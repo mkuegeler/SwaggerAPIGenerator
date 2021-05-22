@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "write-yaml-file": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^15.3.0"
+  }
+}
