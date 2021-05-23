@@ -1,25 +1,45 @@
-{ 
-  "compileOnSave": false, 
+{
+  "compileOnSave": false,
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     "resolveJsonModule": true,
     /* Basic Options */
-    "target": "es5",                          
-    "module": "commonjs",                     
-    "outDir": "./dist", 
-    /* Strict Type-Checking Options */
-    "strict": true,   
-    "types": [],   
-    "esModuleInterop": true,                  
-     /* Advanced Options */
-    "skipLibCheck": true,                     
-    "forceConsistentCasingInFileNames": true  
+    "target": "es5", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */
+    "module": "commonjs", /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
+    "sourceMap": true, /* Generates corresponding '.map' file. */
+    /* Concatenate and emit output to single file. */
+    "outDir": "./dist", /* Redirect output structure to the directory. */
+    "strict": true, /* Enable all strict type-checking options. */
+    "moduleResolution": "node", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "baseUrl": "./", /* Base directory to resolve non-absolute module names. */
+    "paths": {
+      "src/*": [
+        "src/*"
+      ]
+    },
+    // "rootDirs": [],                              /* List of root folders whose combined content represents the structure of the project at runtime. */
+    "typeRoots": [
+      "node_modules/@types"
+    ], /* List of folders to include type definitions from. */
+    // "types": [],                                 /* Type declaration files to be included in compilation. */
+    "esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+    "skipLibCheck": true, /* Skip type checking of declaration files. */
+    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "include": [
     "src/**/*"
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.js"
+    "dist",
+    "build",
+    "out"
   ],
+  "filesGlob": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "./typings/index.d.ts",
+    "./custom_typings/**/*.d.ts",
+    "./node_modules/@types/**/*.d.ts"
+  ], /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
 }

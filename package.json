@@ -1,8 +1,28 @@
 {
-  "dependencies": {
-    "write-yaml-file": "^4.2.0"
+  "name": "swaggerapigenerator",
+  "version": "1.0.0",
+  "description": "A Swagger API generator in TypeScript",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && node dist/main.js"
   },
-  "devDependencies": {
-    "@types/node": "^15.3.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkuegeler/SwaggerAPIGenerator.git"
+  },
+  "keywords": [
+    "Swagger",
+    "OpenAPI",
+    "TypeScript"
+  ],
+  "author": "mkuegeler",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mkuegeler/SwaggerAPIGenerator/issues"
+  },
+  "homepage": "https://github.com/mkuegeler/SwaggerAPIGenerator#readme",
+  "dependencies": {
+    "@types/node": "^15.6.0"
   }
 }

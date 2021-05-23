@@ -3,7 +3,7 @@ export interface Contact {
     email: string;
 }
 
-const ContactDefault: Contact = {
+export const ContactDefault: Contact = {
     email: "hello@example.com"
 }
 
@@ -12,7 +12,7 @@ export interface License {
     url: string;
 }
 
-const LicenseDefault: License = {
+export const LicenseDefault: License = {
     name: "Apache 2.0",
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 }
@@ -25,7 +25,7 @@ export interface Info {
     license: License;
 }
 
-const InfoDefault: Info = {
+export const InfoDefault: Info = {
     description: "This is a Swagger API",
     version: "1.0.0",
     title: "API",
