@@ -88,6 +88,21 @@ export function Responses(p:string) {
     };
 }
 
+export interface Definitions {
+    (name: string, type: string, properties: object): object;
+
+}
+
+export function Properties() {
+      return {};
+}
+
+export interface Href {
+    type: string,
+    example: string
+}
+
+
 
 export interface SwaggerInterface {
     swagger: string,
