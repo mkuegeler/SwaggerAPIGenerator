@@ -93,13 +93,22 @@ export interface Definitions {
 
 }
 
-export function Properties() {
-      return {};
+export const DefinitionsDefault: Definitions = function(name:string, type:string, properties: object) {
+    return {[`${name}`]: { type: type, properties: properties}};
 }
 
-export interface Href {
+export interface Property {
     type: string,
     example: string
+}
+
+export interface Properties {
+    (name: string, properties: Property): object;
+
+}
+
+export const PropertiesDefault: Properties = function(name:string, properties: Property) {
+    return {[`${name}`]: properties};
 }
 
 
@@ -117,16 +126,19 @@ export class SwaggerObjectClass implements SwaggerInterface {
     public info: Info;
     public tags: Tags[];
     public paths: object;
+    public definitions: object;
     constructor(
         swagger: string = "2.0",
         info: Info = InfoDefault,
         tags: Tags[] = TagsDefault,
-        paths: object = PathsDefault("a",GetDefaults)
+        paths: object = PathsDefault("a",GetDefaults),
+        definitions: object = DefinitionsDefault("a","object", {})
     ) {
         this.swagger = swagger;
         this.info = info;
         this.tags = tags;
         this.paths = paths;
+        this.definitions = definitions;
     }
 }
 

@@ -4,7 +4,9 @@
 // 2. node dist/main.js
 // or just 'npm run build'
 
-import { InfoDefault, TagsDefault, PathsDefault, GetDefaults, Get, SwaggerObjectClass } from './schema';
+import { InfoDefault, TagsDefault, 
+           PathsDefault, GetDefaults, Get, DefinitionsDefault, 
+                  PropertiesDefault, SwaggerObjectClass } from './schema';
 import * as fs from "fs";
 import svg from './svg.json';
 
@@ -16,49 +18,15 @@ function swagger() {
   let tags = TagsDefault;
    
   let ElementList = {};
-  // let newList = {};
-      // var clone1: Get = {
-      //   tags: GetDefaults.tags,
-      //   summary: GetDefaults.summary,
-      //   operationId: GetDefaults.operationId,
-      //   description: GetDefaults.description,
-      //   produces: GetDefaults.produces,
-      //   responses: GetDefaults.responses
-      // }; 
-
-      // ElementList = Object.assign(ElementList, PathsDefault("a",clone1));
-
-      // var clone2: Get = {
-      //   tags: GetDefaults.tags,
-      //   summary: GetDefaults.summary,
-      //   operationId: GetDefaults.operationId,
-      //   description: GetDefaults.description,
-      //   produces: GetDefaults.produces,
-      //   responses: GetDefaults.responses
-      // }; 
-      // ElementList = Object.assign(ElementList, PathsDefault("animate",clone2));
-
-      // var clone3: Get = {
-      //   tags: GetDefaults.tags,
-      //   summary: GetDefaults.summary,
-      //   operationId: GetDefaults.operationId,
-      //   description: GetDefaults.description,
-      //   produces: GetDefaults.produces,
-      //   responses: GetDefaults.responses
-      // }; 
-      // ElementList = Object.assign(ElementList, PathsDefault("animateMotion",clone3));
-   
-  // animateMotion
-  // let el = new SwaggerObjectClass();
-
+  let DefinitionsList = {};
+  let AttributesList = {};
+  
   const file: string = './out/data.json';
   let get: Get;
 
   // Looping through JSON
   for (const key in svg) {
-     // console.log(key);
-    // if (key === 'a') {
-      // var n = svg[key as keyof typeof svg];
+      var attributes = svg[key as keyof typeof svg];
       get = {
         tags: GetDefaults.tags,
         summary: GetDefaults.summary,
@@ -67,12 +35,18 @@ function swagger() {
         produces: GetDefaults.produces,
         responses: GetDefaults.responses
       }; 
-
       ElementList = Object.assign(ElementList, PathsDefault(key,get));
-    //}
+
+      for (const a in attributes) {
+        AttributesList = Object.assign(AttributesList, PropertiesDefault(a, {type:"string", 
+               example: attributes[a as keyof typeof attributes]}))
+      }
+      DefinitionsList = Object.assign(DefinitionsList, DefinitionsDefault(key,"object", AttributesList));
+      AttributesList = {};
+   
   }
 
-  let el = new SwaggerObjectClass(swg, info,tags, ElementList);
+  let el = new SwaggerObjectClass(swg, info,tags, ElementList, DefinitionsList);
 
   fs.writeFile(file, JSON.stringify(el), err => {
     if (err) {
@@ -83,8 +57,6 @@ function swagger() {
   })
 
 }
-
-// console.log(svg.a);
 
 swagger();
 
