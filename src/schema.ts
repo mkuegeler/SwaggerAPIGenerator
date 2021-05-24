@@ -34,18 +34,84 @@ export const InfoDefault: Info = {
 
 };
 
+export interface Tags {
+    name: string;
+    description: string;
+}
+
+export const TagsDefault: Tags[] = [{
+    name: "developers",
+    description: "Operations available to regular developers"
+}]
+
+
+export interface Get {
+    tags: string[],
+    summary: string,
+    operationId: string,
+    description: string,
+    produces: string[],
+    responses: object
+}
+
+export const GetDefaults: Get = {
+    tags: ["developers"], 
+    summary: "displays attributes of element",
+    operationId: "attributes-of",
+    description:"Passing in options",
+    produces: [ "application/json" ],
+    responses: {}
+};
+
+export interface Paths {
+    (name: string, get: Get): object;
+
+}
+
+export const PathsDefault: Paths = function(name:string,get: Get) {
+    get.operationId = `${get.operationId}-${name}`;
+    get.responses = Responses(name);
+    return {[`/${name}`]: { get: get}};
+}
+
+export function Responses(p:string) {
+    return {
+        "200": {
+            "description": "result with sample values if any",
+            "schema": {
+                "$ref": `#/definitions/${p}`
+            }
+        },
+        "400": {
+            "description": "bad input parameter"
+        }
+    };
+}
+
+
 export interface SwaggerInterface {
-    swagger: string;
-    info: Info;
+    swagger: string,
+    info: Info,
+    tags: Tags[],
+    paths: object;
 }
 
 // Class definitions
 export class SwaggerObjectClass implements SwaggerInterface {
     public swagger: string;
     public info: Info;
-    constructor(swagger: string = "2.0", info: Info = InfoDefault) {
+    public tags: Tags[];
+    public paths: object;
+    constructor(
+        swagger: string = "2.0",
+        info: Info = InfoDefault,
+        tags: Tags[] = TagsDefault,
+        paths: object = PathsDefault("a",GetDefaults)
+    ) {
         this.swagger = swagger;
         this.info = info;
+        this.tags = tags;
+        this.paths = paths;
     }
 }
 
