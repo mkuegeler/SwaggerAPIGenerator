@@ -1,0 +1,36 @@
+{
+    "main": {
+        "Description": "My API",
+        "Version": "2.0",
+        "DataFolder": "./data",
+        "SourceFile": "svg.json",
+        "ResultFile": "result2.json"
+    },
+    "Contact": {
+        "email": "hello@example.com"
+    },
+    "License": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "Info": {
+        "description": "This is a Swagger API",
+        "version": "1.0.0",
+        "title": "API"
+    },
+    "Tags": {
+        "name": "developers",
+        "description": "Operations available to regular developers"
+    },
+    "Get": {
+        "tags": [
+            "developers"
+        ],
+        "summary": "displays attributes of element",
+        "operationId": "attributes-of",
+        "description": "Passing in options",
+        "produces": [
+            "application/json"
+        ]
+    }
+}

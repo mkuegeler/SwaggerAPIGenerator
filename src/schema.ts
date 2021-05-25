@@ -1,10 +1,12 @@
 // Interface defintions
+import config from './config.json'
+
 export interface Contact {
     email: string;
 }
 
 export const ContactDefault: Contact = {
-    email: "hello@example.com"
+    email: config.Contact.email
 }
 
 export interface License {
@@ -13,8 +15,8 @@ export interface License {
 }
 
 export const LicenseDefault: License = {
-    name: "Apache 2.0",
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    name: config.License.name,
+    url: config.License.url
 }
 
 export interface Info {
@@ -26,9 +28,9 @@ export interface Info {
 }
 
 export const InfoDefault: Info = {
-    description: "This is a Swagger API",
-    version: "1.0.0",
-    title: "API",
+    description: config.Info.description,
+    version: config.Info.version,
+    title: config.Info.title,
     contact: ContactDefault,
     license: LicenseDefault
 
@@ -40,8 +42,8 @@ export interface Tags {
 }
 
 export const TagsDefault: Tags[] = [{
-    name: "developers",
-    description: "Operations available to regular developers"
+    name: config.Tags.name,
+    description: config.Tags.description
 }]
 
 
@@ -55,11 +57,11 @@ export interface Get {
 }
 
 export const GetDefaults: Get = {
-    tags: ["developers"], 
-    summary: "displays attributes of element",
-    operationId: "attributes-of",
-    description:"Passing in options",
-    produces: [ "application/json" ],
+    tags: config.Get.tags, 
+    summary: config.Get.summary,
+    operationId: config.Get.operationId,
+    description: config.Get.description,
+    produces: config.Get.produces,
     responses: {}
 };
 
@@ -128,7 +130,7 @@ export class SwaggerObjectClass implements SwaggerInterface {
     public paths: object;
     public definitions: object;
     constructor(
-        swagger: string = "2.0",
+        swagger: string = config.main.Version,
         info: Info = InfoDefault,
         tags: Tags[] = TagsDefault,
         paths: object = PathsDefault("a",GetDefaults),
