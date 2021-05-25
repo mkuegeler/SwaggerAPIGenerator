@@ -105,8 +105,5 @@ dist
 
 # Custom settings
 
-# Exclude content of folder for custom import and export files
-data/*.*
-
 # Exclude lock.json files
 package-lock.json

@@ -45,7 +45,7 @@ function main() {
     var attributes = inJson[key as keyof typeof inJson];
     get = {
       tags: GetDefaults.tags,
-      summary: GetDefaults.summary,
+      summary: `${GetDefaults.summary}: ${key}`,
       operationId: GetDefaults.operationId,
       description: GetDefaults.description,
       produces: GetDefaults.produces,

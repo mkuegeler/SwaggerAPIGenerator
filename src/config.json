@@ -1,6 +1,6 @@
 {
     "main": {
-        "Description": "My API",
+        "Description": "This is API provides attributes and sample values of SVG elements",
         "Version": "2.0",
         "DataFolder": "./data",
         "SourceFile": "svg",
@@ -14,9 +14,9 @@
         "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
     "Info": {
-        "description": "This is a Swagger API",
+        "description": "This is API provides default values for SVG elements",
         "version": "1.0.0",
-        "title": "API"
+        "title": "SVG API"
     },
     "Tags": {
         "name": "developers",
