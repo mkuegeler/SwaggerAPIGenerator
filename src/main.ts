@@ -10,20 +10,22 @@ import {
   PropertiesDefault, SwaggerObjectClass
 } from './schema';
 import * as fs from 'fs';
+import writeYamlFile from 'write-yaml-file';
 
 // Get general configuration settings
 import config from './config.json'
 
-// const DataFolder = config.DataFolder;
-const SourceFile = `${config.main.DataFolder}/${config.main.SourceFile}`;
-const ResultFile = `${config.main.DataFolder}/${config.main.ResultFile}`;
+const SourceJson = `${config.main.DataFolder}/${config.main.SourceFile}.json`;
+const ResultJson = `${config.main.DataFolder}/${config.main.ResultFile}.json`;
+const ResultYaml = `${config.main.DataFolder}/${config.main.ResultFile}.yaml`;
+
 const Description = config.main.Description;
 const Version = config.main.Version;
 
-function Swaggerize() {
+function main() {
 
 
-  const inFile = fs.readFileSync(SourceFile,'utf-8');
+  const inFile = fs.readFileSync(SourceJson, 'utf-8');
   const inJson = JSON.parse(inFile);
 
   let swg = Version;
@@ -63,16 +65,27 @@ function Swaggerize() {
   }
 
   let el = new SwaggerObjectClass(swg, info, tags, ElementList, DefinitionsList);
-
-  fs.writeFile(ResultFile, JSON.stringify(el), err => {
+  
+  fs.writeFile(ResultJson, JSON.stringify(el), err => {
     if (err) {
       console.error(err);
       return
-    } 
+    } else {
+      Json2Yaml(ResultYaml, JSON.parse(fs.readFileSync(ResultJson, 'utf-8')));
+    }
     //file written successfully
   })
 
 }
 
-Swaggerize();
+function Json2Yaml(f: string, o: object) {
+  writeYamlFile(f, o).then(() => {
+    console.log('done')
+  });
+}
+
+main();
+
+
+
 

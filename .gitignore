@@ -104,8 +104,9 @@ dist
 .tern-port
 
 # Custom settings
-# Exclude export files
-out
+
+# Exclude content of folder for custom import and export files
+data/*.*
 
 # Exclude lock.json files
 package-lock.json

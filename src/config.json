@@ -3,8 +3,8 @@
         "Description": "My API",
         "Version": "2.0",
         "DataFolder": "./data",
-        "SourceFile": "svg.json",
-        "ResultFile": "result2.json"
+        "SourceFile": "svg",
+        "ResultFile": "result"
     },
     "Contact": {
         "email": "hello@example.com"

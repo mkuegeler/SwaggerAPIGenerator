@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/mkuegeler/SwaggerAPIGenerator#readme",
   "dependencies": {
-    "@types/node": "^15.6.0"
+    "@types/node": "^15.6.0",
+    "write-yaml-file": "^4.2.0"
   }
 }
